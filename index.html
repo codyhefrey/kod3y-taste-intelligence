@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOD3Y Taste Intelligence</title><style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif}body{margin:0;background:#0a1020;color:#e9f1ff}
+main{max-width:780px;margin:8vh auto;padding:24px}.tag{color:#5fe6cf;font-weight:700;letter-spacing:.12em}
+h1{font-size:clamp(2.1rem,6vw,4rem);line-height:1.08}p{color:#a8bad0;line-height:1.6}
+.panel{background:#141f35;border:1px solid #30405a;border-radius:18px;padding:24px}
+label{display:block;margin:16px 0 8px}input,select,button{box-sizing:border-box;width:100%;padding:13px;border-radius:10px;font:inherit}
+input,select{background:#0b1425;border:1px solid #51627c;color:white}button{background:#50e5cd;color:#081423;border:0;margin-top:20px;font-weight:800;cursor:pointer}
+pre{white-space:pre-wrap;word-break:break-word;background:#091324;padding:18px;border-radius:12px;min-height:55px}
+small{color:#a8bad0}</style></head><body><main>
+<div class="tag">KOD3Y T3CH / QLOO AGENTIC HACKATHON</div><h1>Discover culture through intelligence.</h1>
+<p>A transparent prototype for culturally relevant discovery. Live Qloo recommendations are not yet connected; this interface reports integration status rather than inventing results.</p>
+<section class="panel"><form id="form"><label for="interest">Your interest</label>
+<input id="interest" maxlength="100" required placeholder="e.g. jazz, Nairobi cuisine, science fiction">
+<label for="category">Explore</label><select id="category"><option value="dining">Dining</option><option value="music">Music</option><option value="movies">Movies</option></select>
+<button type="submit">Explore recommendations</button></form><h2>Results</h2><pre id="results" aria-live="polite">Enter an interest to begin.</pre>
+<small>Prototype only. Do not enter private or sensitive information.</small></section></main>
+<script>document.querySelector("#form").addEventListener("submit",async e=>{e.preventDefault();const out=document.querySelector("#results");out.textContent="Checking integration…";try{const r=await fetch("/api/recommend",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({interest:document.querySelector("#interest").value,category:document.querySelector("#category").value})});out.textContent=JSON.stringify(await r.json(),null,2)}catch(err){out.textContent="Request failed: "+err.message}})</script>
+</body></html>
