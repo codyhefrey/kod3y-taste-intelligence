@@ -10,11 +10,11 @@ input,select{background:#0b1425;border:1px solid #51627c;color:white}button{back
 pre{white-space:pre-wrap;word-break:break-word;background:#091324;padding:18px;border-radius:12px;min-height:55px}
 small{color:#a8bad0}</style></head><body><main>
 <div class="tag">KOD3Y T3CH / QLOO AGENTIC HACKATHON</div><h1>Discover culture through intelligence.</h1>
-<p>A transparent prototype for culturally relevant discovery. Live Qloo recommendations are not yet connected; this interface reports integration status rather than inventing results.</p>
-<section class="panel"><form id="form"><label for="interest">Your interest</label>
-<input id="interest" maxlength="100" required placeholder="e.g. jazz, Nairobi cuisine, science fiction">
-<label for="category">Explore</label><select id="category"><option value="dining">Dining</option><option value="music">Music</option><option value="movies">Movies</option></select>
-<button type="submit">Explore recommendations</button></form><h2>Results</h2><pre id="results" aria-live="polite">Enter an interest to begin.</pre>
-<small>Prototype only. Do not enter private or sensitive information.</small></section></main>
-<script>document.querySelector("#form").addEventListener("submit",async e=>{e.preventDefault();const out=document.querySelector("#results");out.textContent="Checking integration…";try{const r=await fetch("/api/recommend",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({interest:document.querySelector("#interest").value,category:document.querySelector("#category").value})});out.textContent=JSON.stringify(await r.json(),null,2)}catch(err){out.textContent="Request failed: "+err.message}})</script>
+<p>Explore cultural affinities across dining, music and movies. The Qloo API workflow is implemented but requires a personal hackathon key and live verification. Results never appear unless returned by Qloo.</p>
+<section class="panel"><form id="form"><label for="interest">Name a favorite movie, musician or restaurant</label>
+<input id="interest" maxlength="100" required placeholder="e.g. Black Panther, Burna Boy, Balthazar">
+<label for="category">Discover</label><select id="category"><option value="dining">Dining</option><option value="music">Music</option><option value="movies">Movies</option></select>
+<button type="submit">Explore recommendations</button></form><h2>Results</h2><pre id="results" aria-live="polite">Enter a named favorite to begin.</pre>
+<small>Experimental prototype. Do not enter sensitive information.</small></section></main>
+<script>document.querySelector("#form").addEventListener("submit",async e=>{e.preventDefault();const out=document.querySelector("#results");out.textContent="Checking Qloo integration…";try{const r=await fetch("/api/recommend",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({interest:document.querySelector("#interest").value,category:document.querySelector("#category").value})});out.textContent=JSON.stringify(await r.json(),null,2)}catch(err){out.textContent="Request failed: "+err.message}})</script>
 </body></html>
