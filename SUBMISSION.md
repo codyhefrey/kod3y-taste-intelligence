@@ -4,7 +4,7 @@
 **Deadline:** Friday, October 30, 2026, **11:45 PM Toronto (EDT)**  
 **Project:** KOD3Y Taste Intelligence  
 **Code:** https://github.com/codyhefrey/kod3y-taste-intelligence  
-**Demo:** NOT YET DEPLOYED — add verified external URL before submission  
+**Demo:** https://kod3y-taste-intelligence-demo.onrender.com — hosted interface confirmed by Render; real Qloo results need issued API key  
 **License:** MIT (public standalone competition edition)
 
 > Only submit a claim of functional Qloo integration after you successfully test your issued hackathon key. A no-key fallback screen does not satisfy the working Qloo application requirement.
