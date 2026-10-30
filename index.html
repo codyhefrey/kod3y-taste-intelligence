@@ -1,20 +1,90 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KOD3Y Taste Intelligence</title><style>
-:root{color-scheme:dark;font-family:system-ui,sans-serif}body{margin:0;background:#0a1020;color:#e9f1ff}
-main{max-width:780px;margin:8vh auto;padding:24px}.tag{color:#5fe6cf;font-weight:700;letter-spacing:.12em}
-h1{font-size:clamp(2.1rem,6vw,4rem);line-height:1.08}p{color:#a8bad0;line-height:1.6}
-.panel{background:#141f35;border:1px solid #30405a;border-radius:18px;padding:24px}
-label{display:block;margin:16px 0 8px}input,select,button{box-sizing:border-box;width:100%;padding:13px;border-radius:10px;font:inherit}
-input,select{background:#0b1425;border:1px solid #51627c;color:white}button{background:#50e5cd;color:#081423;border:0;margin-top:20px;font-weight:800;cursor:pointer}
-pre{white-space:pre-wrap;word-break:break-word;background:#091324;padding:18px;border-radius:12px;min-height:55px}
-small{color:#a8bad0}</style></head><body><main>
-<div class="tag">KOD3Y T3CH / QLOO AGENTIC HACKATHON</div><h1>Discover culture through intelligence.</h1>
-<p>Explore cultural affinities across dining, music and movies. The Qloo API workflow is implemented but requires a personal hackathon key and live verification. Results never appear unless returned by Qloo.</p>
-<section class="panel"><form id="form"><label for="interest">Name a favorite movie, musician or restaurant</label>
-<input id="interest" maxlength="100" required placeholder="e.g. Black Panther, Burna Boy, Balthazar">
-<label for="category">Discover</label><select id="category"><option value="dining">Dining</option><option value="music">Music</option><option value="movies">Movies</option></select>
-<button type="submit">Explore recommendations</button></form><h2>Results</h2><pre id="results" aria-live="polite">Enter a named favorite to begin.</pre>
-<small>Experimental prototype. Do not enter sensitive information.</small></section></main>
-<script>document.querySelector("#form").addEventListener("submit",async e=>{e.preventDefault();const out=document.querySelector("#results");out.textContent="Checking Qloo integration…";try{const r=await fetch("/api/recommend",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({interest:document.querySelector("#interest").value,category:document.querySelector("#category").value})});out.textContent=JSON.stringify(await r.json(),null,2)}catch(err){out.textContent="Request failed: "+err.message}})</script>
-</body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An evidence-grounded cultural discovery workflow using Qloo Taste AI.">
+<title>KOD3Y Taste Intelligence · Cultural Discovery</title>
+<style>
+:root{color-scheme:dark;--bg:#080e20;--surface:#14223a;--line:#344564;--muted:#adc1d6;--accent:#68f0d5;font:16px/1.5 system-ui,Segoe UI,sans-serif}
+*{box-sizing:border-box}body{margin:0;color:#f0f8ff;background:radial-gradient(circle at 70% 0,#18354c 0,#080e20 55%)}
+main{max-width:1150px;margin:auto;padding:30px 20px 80px}header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-weight:900;letter-spacing:.18em;color:var(--accent);font-size:.85rem}.chip{color:#bbf6ed;border:1px solid #407d85;border-radius:99px;padding:6px 12px;font-size:.8rem}
+.hero{padding:45px 0 22px}h1{font-size:clamp(2.4rem,5vw,4.9rem);letter-spacing:-.058em;line-height:1.06;max-width:850px;margin:15px 0}
+p{color:var(--muted)}.hero p{font-size:1.1rem;max-width:760px}
+.layout{display:grid;grid-template-columns:380px 1fr;gap:16px;margin-top:14px}
+.panel{background:linear-gradient(145deg,#172944,#101a2e);border:1px solid var(--line);border-radius:20px;padding:25px;min-width:0}
+h2{font-size:1.2rem;margin:0 0 16px}.label{font-weight:700;display:block;margin:17px 0 6px}
+input,select,button{font:inherit;border-radius:11px;box-sizing:border-box}
+input,select{background:#071225;color:white;border:1px solid #526887;width:100%;padding:13px}
+input:focus,select:focus{outline:2px solid #71d5da;outline-offset:2px}
+button{cursor:pointer;border:0;background:#63edcf;color:#092424;padding:13px 17px;font-weight:800;width:100%;margin-top:23px}
+button:disabled{opacity:.6;cursor:wait}.small{font-size:.85rem}.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#9cead8}
+.muted{color:var(--muted)}.result{border:1px solid #304961;background:#0b1b30;border-radius:13px;padding:15px;margin:12px 0}
+.result h3{margin:3px 0 6px;font-size:1.08rem}.result p{margin:7px 0;font-size:.88rem}
+.tag{display:inline-block;font-size:.74rem;padding:3px 8px;border-radius:99px;border:1px solid #335f69;color:#a7dfd9;margin:2px 3px 2px 0}
+.metric{font-size:.78rem;color:#a0edc8;font-weight:700}.trace{list-style:none;margin:0;padding:0}.trace li{border-left:2px solid #457987;padding:8px 0 8px 14px;color:#c1d5e3;font-size:.86rem}
+#message{padding:11px;border-radius:9px;background:#0b2034;min-height:45px;color:#d2eaf3}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.footer{font-size:.84rem;margin-top:26px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.hero{padding:30px 0 12px}main{padding:20px 14px 50px}}
+</style></head><body><main>
+<header><span class="brand">KOD3Y T3CH / TASTE INTELLIGENCE</span><span class="chip">QLOO-POWERED DISCOVERY</span></header>
+<section class="hero"><span class="eyebrow">From what you love to what you'll discover</span><h1>Explore culture beyond your usual world.</h1>
+<p>Give the agent up to three favorites. It resolves real cultural entities using Qloo, explores their connections across music, movies and dining, then shows you grounded recommendations and an auditable discovery trail.</p></section>
+<div class="layout">
+<section class="panel">
+<span class="eyebrow">01 · Taste profile</span><h2>Start with what you already love</h2>
+<form id="form">
+<label class="label" for="interest">Favorite movies, artists or restaurants</label>
+<input id="interest" required maxlength="120" value="Black Panther" placeholder="e.g. Black Panther, Burna Boy">
+<p class="small">Enter 1–3 named favorites, separated by commas. Specific titles or names work best.</p>
+<label class="label" for="category">What would you like to discover?</label>
+<select id="category"><option value="all">Surprise me · All three</option><option value="dining">Restaurants & dining</option><option value="music">Music artists</option><option value="movies">Movies</option></select>
+<label class="label" for="location">Dining location (optional)</label>
+<input id="location" maxlength="80" placeholder="e.g. Toronto, Ontario">
+<p class="small">Your location is used only to refine dining results when entered. No automatic geolocation.</p>
+<button id="submit" type="submit">Run discovery agent</button>
+</form>
+<p class="small">Your interest names are sent to the server to request recommendations from Qloo. Never enter personal or sensitive information.</p>
+</section>
+<section class="panel">
+<span class="eyebrow">02 · Auditable taste journey</span><h2>Discoveries</h2>
+<div id="message" role="status">Enter your favorite and run the agent. Live results require an issued Qloo hackathon API key.</div>
+<div id="seeds"></div><div id="results"></div>
+<section style="margin-top:20px"><h2>How the agent reached these results</h2><ol class="trace" id="trace"><li>Agent will search Qloo for real IDs, then query the Qloo Insights API for each requested category.</li></ol></section>
+</section>
+</div>
+<p class="footer">KOD3Y Taste Intelligence · Public competition edition. No recommendations are invented. Qloo cultural affinity is not a probability, and the integration is not verified live until an issued key has been tested.</p>
+</main><script>
+const $=id=>document.getElementById(id);
+const el=(tag,text,cls)=>{const x=document.createElement(tag);if(text!==undefined)x.textContent=text;if(cls)x.className=cls;return x};
+function render(payload){
+$('message').textContent=payload.message||payload.error||payload.status||'No response';
+$('seeds').replaceChildren();$('results').replaceChildren();$('trace').replaceChildren();
+if(payload.resolved_interests?.length){
+const p=el('p','Resolved taste signals: '+payload.resolved_interests.map(x=>x.name).join(' · '),'small');
+$('seeds').append(p)}
+for(const item of payload.results||[]){
+const card=el('article',undefined,'result');
+card.append(el('span',item.category.toUpperCase(),'eyebrow'),el('h3',item.name));
+if(item.affinity!==null&&item.affinity!==undefined)card.append(el('span','Qloo affinity '+item.affinity+' / 1 · NOT a probability','metric'));
+if(item.description)card.append(el('p',item.description));
+card.append(el('p',item.reason||'Grounded in Qloo Insights'));
+for(const tag of item.tags||[])card.append(el('span',tag,'tag'));
+card.append(el('p','Source: '+item.source+' · Qloo entity '+item.entity_id,'small'));
+$('results').append(card);
+}
+for(const step of payload.steps||[]){
+const info=step.tool+' · '+(step.query||step.category||'access')+' · '+step.status+
+(step.matched?' → '+step.matched:'')+
+(step.recommendations!==undefined?' · '+step.recommendations+' results':'');
+$('trace').append(el('li',info));
+}
+if(!(payload.steps||[]).length)$('trace').append(el('li','No external recommendation request completed.'));
+}
+$('form').addEventListener('submit',async event=>{
+event.preventDefault();$('submit').disabled=true;$('message').textContent='Resolving named favorites and querying Qloo…';
+try{
+const response=await fetch('/api/recommend',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({interest:$('interest').value,category:$('category').value,location:$('location').value})});
+const payload=await response.json();render(payload);
+}catch(e){render({message:'Network error: '+e.message,results:[],steps:[]})}
+finally{$('submit').disabled=false}
+});
+</script></body></html>
