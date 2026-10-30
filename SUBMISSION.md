@@ -47,11 +47,11 @@ Created the KOD3Y Taste Intelligence standalone public demo, a server-side Qloo 
 
 - [x] Public repository and MIT license
 - [x] Multi-step agentic discovery code with documentation
-- [x] Automated code tests
+- [x] Automated unit and local HTTP smoke tests passed
 - [x] API key request form submitted October 29
 - [ ] **Issued Qloo hackathon key received**
 - [ ] **Live Qloo results verified against real API**
-- [ ] Public website actually deployed and reachable
+- [x] Public website deployed and returned HTTP 200 (provider integration still pending)
 - [ ] Devpost description and real demo URL entered and submitted before deadline
 - [ ] Check final rules, API authorization, and open-source licensing
 
@@ -60,3 +60,9 @@ Created the KOD3Y Taste Intelligence standalone public demo, a server-side Qloo 
 ## Intellectual-property boundary
 
 The contest's public repository is MIT open source. It does **not** include private KOD3Y T3CH code, secrets or proprietary datasets. Qloo event rules grant judging and promotional use rights for submitted materials; publishing under MIT grants public reuse rights for this specific code. Review before final submission.
+
+### Hosting evidence
+
+Render service: https://dashboard.render.com/web/srv-dbhudrvb9u1s73b1hr1g
+
+At the last verification Render reported the public website live. This is not proof that live Qloo recommendations work.
