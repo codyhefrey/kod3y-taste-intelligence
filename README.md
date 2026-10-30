@@ -2,7 +2,7 @@
 
 **Public demonstration:** https://kod3y-taste-intelligence-demo.onrender.com
 
-Render confirms that the hosted interface is live. Qloo-specific recommendations will not function until an issued hackathon key is configured on the server and a genuine API response is verified. This distinction is intentional and visible in the app.
+The hosted interface is live. The issued Qloo hackathon key was securely configured on Render on October 30, 2026. The founder reports real recommendations working, and three successful POST /api/recommend HTTP 200 responses were observed after activation.
 
 **A grounded cross-category discovery agent** for the 2026 Qloo Agentic Hackathon, developed under KOD3Y T3CH.
 
@@ -18,7 +18,7 @@ The user enters one to three **named** favorites (movies, musicians, restaurants
 - Unit tests that mock Qloo calls without credentials, plus live-loopback HTTP smoke tests
 - GitHub Actions CI checks and Render deployment blueprint
 
-**Crucial:** The developer submitted the Qloo key-request form on October 29, 2026 and a key had not yet been observed in Gmail. The implementation was built against official docs, but **not live-tested with a real issued Qloo key**. Thus there is no proof this is a functional final hackathon entry yet.
+**Latest status (October 30):** A genuine Qloo-issued hackathon key was received and configured server-side on Render. The founder reports live recommendations working and Render shows successful requests. No API secrets are committed or exposed.
 
 ## Start locally (Windows PowerShell)
 
@@ -31,7 +31,7 @@ py app.py
 
 Open http://127.0.0.1:8787. The page loads without a key and displays a transparent pending-access message instead of simulated cultural picks.
 
-When Qloo emails a hackathon key, store it in the **server environment only**:
+For local development, store the issued hackathon key in the **server environment only**:
 
 ```powershell
 $env:QLOO_API_KEY = Read-Host "Paste your issued Qloo API key"
@@ -60,7 +60,7 @@ See the [GitHub Actions tab](https://github.com/codyhefrey/kod3y-taste-intellige
 
 ## Public hosting
 
-`render.yaml` configures a free-tier Python service, the `/api/health` endpoint and a **private** `QLOO_API_KEY` environment variable. The public website has been deployed to **https://kod3y-taste-intelligence-demo.onrender.com** and a successful home-page response appears in Render's logs. The Qloo-backed workflow remains **unverified** until a real key is issued and tested. A localhost address is **not** an acceptable public demo URL.
+`render.yaml` configures a free-tier Python service, the `/api/health` endpoint and a **private** `QLOO_API_KEY` environment variable. The public website has been deployed to **https://kod3y-taste-intelligence-demo.onrender.com** and a successful home-page response appears in Render's logs. The key is configured and the founder reports the Qloo-backed workflow working. The server records HTTP 200 requests but does not log response bodies. A localhost address is **not** an acceptable public demo URL.
 
 ## Hackathon requirements and ownership
 
