@@ -4,7 +4,7 @@
 **Deadline:** Friday, October 30, 2026, **11:45 PM Toronto (EDT)**  
 **Project:** KOD3Y Taste Intelligence  
 **Code:** https://github.com/codyhefrey/kod3y-taste-intelligence  
-**Demo:** https://kod3y-taste-intelligence-demo.onrender.com — hosted interface confirmed by Render; real Qloo results need issued API key  
+**Demo:** https://kod3y-taste-intelligence-demo.onrender.com — live public app; Qloo hackathon key securely configured on Render, and user reports working live recommendations  
 **License:** MIT (public standalone competition edition)
 
 > Only submit a claim of functional Qloo integration after you successfully test your issued hackathon key. A no-key fallback screen does not satisfy the working Qloo application requirement.
@@ -49,9 +49,9 @@ Created the KOD3Y Taste Intelligence standalone public demo, a server-side Qloo 
 - [x] Multi-step agentic discovery code with documentation
 - [x] Automated unit and local HTTP smoke tests passed
 - [x] API key request form submitted October 29
-- [ ] **Issued Qloo hackathon key received**
-- [ ] **Live Qloo results verified against real API**
-- [x] Public website deployed and returned HTTP 200 (provider integration still pending)
+- [x] **Issued Qloo hackathon key received October 30 and configured privately on Render**
+- [x] **Live Qloo discovery reported working by founder; three API endpoint requests returned HTTP 200 in Render logs**
+- [x] Public website deployed, Qloo API key configured, and latest Render deployment live
 - [ ] Devpost description and real demo URL entered and submitted before deadline
 - [ ] Check final rules, API authorization, and open-source licensing
 
@@ -65,4 +65,4 @@ The contest's public repository is MIT open source. It does **not** include priv
 
 Render service: https://dashboard.render.com/web/srv-dbhudrvb9u1s73b1hr1g
 
-At the last verification Render reported the public website live. This is not proof that live Qloo recommendations work.
+The founder reports working Qloo-powered discovery on October 30, and Render records three successful HTTP 200 requests to /api/recommend. Note: these server logs do not expose the individual recommendation payloads.
