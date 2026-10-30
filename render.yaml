@@ -1,0 +1,16 @@
+# Render Blueprint — public demo. Never commit an actual QLOO_API_KEY.
+services:
+  - type: web
+    name: kod3y-taste-intelligence-demo
+    runtime: python
+    plan: free
+    buildCommand: python -m compileall -q .
+    startCommand: python app.py
+    healthCheckPath: /api/health
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: QLOO_API_KEY
+        sync: false
